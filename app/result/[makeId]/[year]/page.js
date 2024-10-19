@@ -1,6 +1,9 @@
+
 async function fetchVehicleModels(makeName, year) {
+  const apiUrl = process.env.NEXT_PUBLIC_MAIN_URL;
+
     try {
-      const res = await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/${makeName}/modelyear/${year}?format=json`);
+      const res = await fetch(`${apiUrl}/vehicles/GetModelsForMakeYear/make/${makeName}/modelyear/${year}?format=json`);
       const data = await res.json();
       return data.Results || [];
     } catch (error) {

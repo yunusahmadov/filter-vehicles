@@ -8,10 +8,10 @@ export default function Home() {
   const [selectedYear, setSelectedYear] = useState('');
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: currentYear - 2015 + 1 }, (a, b) => currentYear - b);
-
+  const apiUrl = process.env.NEXT_PUBLIC_MAIN_URL;
   // Fetching vehicle makes
   useEffect(() => {
-    fetch('https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json')
+    fetch(`${apiUrl}/vehicles/GetMakesForVehicleType/car?format=json`)
       .then(response => response.json())
       .then(data => setMakes(data.Results));
   }, []);
